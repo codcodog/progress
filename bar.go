@@ -82,6 +82,9 @@ func (b *Bar) string() string {
 }
 
 func (b *Bar) completedPercent() float64 {
+	b.mtx.Lock()
+	defer b.mtx.Unlock()
+
 	return (float64(b.current) / float64(b.total)) * 100.00
 }
 
